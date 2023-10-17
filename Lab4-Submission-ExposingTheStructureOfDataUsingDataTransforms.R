@@ -197,6 +197,96 @@ if (require("FactoMineR")) {
 ### The Boston Housing Dataset ----
 # Execute the following to load the “BostonHousing” dataset which is offered
 # in the "mlbench" package:
+data("BostonHousing")
+
+### Crop Dataset ----
+# Execute the following to load the downloaded Crop dataset:
+library(dplyr)
+student_performance_dataset <-
+  read_csv("data/20230412-20230719-BI1-BBIT4-1-StudentPerformanceDataset.CSV",
+           col_types =
+             cols(
+               class_group = col_factor(levels = c("A", "B", "C")),
+               gender = col_factor(levels = c("1", "0")),
+               YOB = col_date(format = "%Y"),
+               regret_choosing_bi = col_factor(levels = c("1", "0")),
+               drop_bi_now = col_factor(levels = c("1", "0")),
+               motivator = col_factor(levels = c("1", "0")),
+               read_content_before_lecture =
+                 col_factor(levels = c("1", "2", "3", "4", "5")),
+               anticipate_test_questions =
+                 col_factor(levels = c("1", "2", "3", "4", "5")),
+               answer_rhetorical_questions =
+                 col_factor(levels = c("1", "2", "3", "4", "5")),
+               find_terms_I_do_not_know =
+                 col_factor(levels = c("1", "2", "3", "4", "5")),
+               copy_new_terms_in_reading_notebook =
+                 col_factor(levels = c("1", "2", "3", "4", "5")),
+               take_quizzes_and_use_results =
+                 col_factor(levels = c("1", "2", "3", "4", "5")),
+               reorganise_course_outline =
+                 col_factor(levels = c("1", "2", "3", "4", "5")),
+               write_down_important_points =
+                 col_factor(levels = c("1", "2", "3", "4", "5")),
+               space_out_revision =
+                 col_factor(levels = c("1", "2", "3", "4", "5")),
+               studying_in_study_group =
+                 col_factor(levels = c("1", "2", "3", "4", "5")),
+               schedule_appointments =
+                 col_factor(levels = c("1", "2", "3", "4", "5")),
+               goal_oriented = col_factor(levels = c("1", "0")),
+               spaced_repetition =
+                 col_factor(levels = c("1", "2", "3", "4")),
+               testing_and_active_recall =
+                 col_factor(levels = c("1", "2", "3", "4")),
+               interleaving = col_factor(levels = c("1", "2", "3", "4")),
+               categorizing = col_factor(levels = c("1", "2", "3", "4")),
+               retrospective_timetable =
+                 col_factor(levels = c("1", "2", "3", "4")),
+               cornell_notes = col_factor(levels = c("1", "2", "3", "4")),
+               sq3r = col_factor(levels = c("1", "2", "3", "4")),
+               commute = col_factor(levels = c("1", "2", "3", "4")),
+               study_time = col_factor(levels = c("1", "2", "3", "4")),
+               repeats_since_Y1 = col_integer(),
+               paid_tuition = col_factor(levels = c("0", "1")),
+               free_tuition = col_factor(levels = c("0", "1")),
+               extra_curricular = col_factor(levels = c("0", "1")),
+               sports_extra_curricular = col_factor(levels = c("0", "1")),
+               exercise_per_week = col_factor(levels = c("0", "1", "2", "3")),
+               meditate = col_factor(levels = c("0", "1", "2", "3")),
+               pray = col_factor(levels = c("0", "1", "2", "3")),
+               internet = col_factor(levels = c("0", "1")),
+               laptop = col_factor(levels = c("0", "1")),
+               family_relationships =
+                 col_factor(levels = c("1", "2", "3", "4", "5")),
+               friendships = col_factor(levels = c("1", "2", "3", "4", "5")),
+               romantic_relationships =
+                 col_factor(levels = c("0", "1", "2", "3", "4")),
+               spiritual_wellnes =
+                 col_factor(levels = c("1", "2", "3", "4", "5")),
+               financial_wellness =
+                 col_factor(levels = c("1", "2", "3", "4", "5")),
+               health = col_factor(levels = c("1", "2", "3", "4", "5")),
+               day_out = col_factor(levels = c("0", "1", "2", "3")),
+               night_out = col_factor(levels = c("0", "1", "2", "3")),
+               alcohol_or_narcotics =
+                 col_factor(levels = c("0", "1", "2", "3")),
+               mentor = col_factor(levels = c("0", "1")),
+               mentor_meetings = col_factor(levels = c("0", "1", "2", "3")),
+               `Attendance Waiver Granted: 1 = Yes, 0 = No` =
+                 col_factor(levels = c("0", "1")),
+               GRADE = col_factor(levels = c("A", "B", "C", "D", "E"))),
+           locale = locale())
+
+View(student_performance_dataset)
+
+# Dimensions
+dim(student_performance_dataset)
+
+# Data Types
+sapply(student_performance_dataset, class)
+glimpse(student_performance_dataset)
+
 
 
 ### Student perfromance dataset ----
@@ -216,6 +306,7 @@ iris_dataset <- read.csv("data/iris.data", header = FALSE,
 # This time, we name the attributes of the Iris Dataset as follows:
 names(iris_dataset) <- c("sepal length in cm", "sepal width in cm",
                          "petal length in cm", "petal width in cm", "class")
+
 
 ### The Pima Indians Diabetes Dataset ----
 # Execute the following to load the "Pima Indians Diabetes" dataset from the
@@ -261,6 +352,11 @@ data("PimaIndiansDiabetes")
 
 ### The Scale Basic Transform on the Boston Housing Dataset ----
 # BEFORE
+
+
+summary(BostonHousing)
+hist(BostonHousing[, 1], main = names(BostonHousing)[1])
+hist(BostonHousing[, 1], main = names(BostonHousing)[1])
 summary(BostonHousing)
 hist(BostonHousing[, 1], main = names(BostonHousing)[1])
 hist(BostonHousing[, 2], main = names(BostonHousing)[2])
@@ -311,6 +407,22 @@ hist(boston_housing_scale_transform[, 14],
 
 ### The Scale Basic Transform on the Crop Dataset ----
 # BEFORE
+View(student_performance_dataset)
+
+summary(student_performance_dataset)
+student_performance_dataset_enj <- as.numeric(unlist(student_performance_dataset[, 49]))
+hist(student_performance_dataset_enj, main = names(student_performance_dataset)[49])
+
+model_of_the_transform <- preProcess(student_performance_dataset, method = c("scale"))
+print(model_of_the_transform)
+student_data_scale_transform <- predict(model_of_the_transform, student_performance_dataset)
+
+# AFTER
+summary(student_data_scale_transform)
+student_performance_dataset_enj <- as.numeric(unlist(student_data_scale_transform[, 49]))
+hist(student_performance_dataset_enj, main = names(student_data_scale_transform)[49])
+
+
 summary(crop_dataset)
 # The code below converts column number 4 into unlisted and numeric data first
 # so that a histogram can be plotted. Further reading:
@@ -427,6 +539,13 @@ boxplot(boston_housing_center_transform[, 14],
         main = names(boston_housing_center_transform)[14])
 
 ### The Centre Basic Transform on the Crop Dataset ----
+summary(student_performance_dataset)
+model_of_the_transform <- preProcess(student_performance_dataset, method = c("scale"))
+print(model_of_the_transform)
+student_data_scale_transform <- predict(model_of_the_transform, student_performance_dataset)
+summary(student_data_scale_transform)
+
+
 summary(crop_dataset)
 model_of_the_transform <- preProcess(crop_dataset, method = c("center"))
 print(model_of_the_transform)
@@ -521,6 +640,18 @@ summary(boston_housing_standardize_transform)
 sapply(boston_housing_standardize_transform[, -4], sd)
 
 ### The Standardize Basic Transform on the Crop Dataset ----
+summary(student_performance_dataset)
+sapply(student_performance_dataset[, 49], sd)
+model_of_the_transform <- preProcess(student_performance_dataset,
+                                     method = c("scale", "center"))
+print(model_of_the_transform)
+student_performance_standardize_transform <- predict(model_of_the_transform, student_performance_dataset) # nolint
+
+# AFTER
+summary(student_performance_standardize_transform)
+sapply(student_performance_standardize_transform[, 49], sd)
+
+
 # BEFORE
 summary(crop_dataset)
 sapply(crop_dataset[, 4], sd)
@@ -634,6 +765,12 @@ boston_housing_normalize_transform <- predict(model_of_the_transform, # nolint
 summary(boston_housing_normalize_transform)
 
 ### The Normalize Transform on the Crop Dataset ----
+summary(student_performance_dataset)
+model_of_the_transform <- preProcess(student_performance_dataset, method = c("range"))
+print(model_of_the_transform)
+student_performance_normalize_transform <- predict(model_of_the_transform, student_performance_dataset)
+summary(student_performance_normalize_transform)
+
 summary(crop_dataset)
 model_of_the_transform <- preProcess(crop_dataset, method = c("range"))
 print(model_of_the_transform)
@@ -736,6 +873,32 @@ hist(boston_housing_box_cox_transform[, 14],
      main = names(boston_housing_box_cox_transform)[14])
 
 ### Box-Cox Power Transform on the Crop Dataset ----
+
+# BEFORE
+summary(student_performance_standardize_transform)
+
+# Calculate the skewness before the Box-Cox transform
+sapply(student_performance_standardize_transform[, 49],  skewness, type = 2)
+sapply(student_performance_standardize_transform[, 49], sd)
+
+model_of_the_transform <- preProcess(student_performance_standardize_transform,
+                                     method = c("BoxCox"))
+print(model_of_the_transform)
+student_performance_box_cox_transform <- predict(model_of_the_transform,
+                                                 student_performance_standardize_transform)
+
+# AFTER
+summary(student_performance_box_cox_transform)
+
+sapply(student_performance_box_cox_transform[, 49],  skewness, type = 2)
+sapply(student_performance_box_cox_transform[, 49], sd)
+
+
+# Calculate the skewness after the Box-Cox transform
+sapply(student_performance_box_cox_transform[, 49],  skewness, type = 2)
+sapply(student_performance_box_cox_transform[, 49], sd)
+
+
 # BEFORE
 summary(crop_data_standardize_transform)
 
@@ -777,6 +940,7 @@ for (i in 1:4) {
 }
 
 model_of_the_transform <- preProcess(iris_dataset, method = c("BoxCox"))
+
 print(model_of_the_transform)
 
 iris_dataset_box_cox_transform <- predict(model_of_the_transform,
@@ -897,6 +1061,28 @@ hist(boston_housing_yeo_johnson_transform[, 14],
      main = names(boston_housing_yeo_johnson_transform)[14])
 
 ### Yeo-Johnson Power Transform on the Crop Dataset ----
+
+
+# BEFORE
+summary(student_performance_standardize_transform)
+
+# Calculate the skewness before the Yeo-Johnson transform
+sapply(student_performance_standardize_transform[, 49],  skewness, type = 2)
+sapply(student_performance_standardize_transform[, 49], sd)
+
+model_of_the_transform <- preProcess(student_performance_standardize_transform,
+                                     method = c("YeoJohnson"))
+print(model_of_the_transform)
+student_performance_yeo_johnson_transform <- predict(model_of_the_transform, # nolint
+                                           student_performance_standardize_transform)
+
+# AFTER
+summary(student_performance_yeo_johnson_transform)
+
+# Calculate the skewness after the Yeo-Johnson transform
+sapply(crop_data_yeo_johnson_transform[, 4],  skewness, type = 2)
+sapply(crop_data_yeo_johnson_transform[, 4], sd)
+
 # BEFORE
 summary(crop_data_standardize_transform)
 
@@ -1080,6 +1266,22 @@ summary(boston_housing_pca_dr)
 # Notice that PCA is not applied to the “Crop Data” dataset because it requires
 # multiple numeric independent variables. The dataset has 3 categorical
 # independent variables and only 1 numeric independent variable.
+
+### PCA for Dimensionality Reduction on the student perfomance dataset ----
+# The initial 4 numeric variables are reduced to 2 principal components
+summary(student_performance_dataset)
+
+model_of_the_transform <- preProcess(student_performance_dataset,
+                                     method = c("scale", "center", "pca"))
+print(model_of_the_transform)
+student_performance_dataset_pca_dr <- predict(model_of_the_transform, student_performance_dataset)
+
+summary(student_performance_dataset_pca_dr)
+dim(student_performance_dataset_pca_dr)
+
+### PCA for Dimensionality Reduction on the Iris Dataset ----
+
+
 
 ### PCA for Dimensionality Reduction on the Iris Dataset ----
 # The initial 4 numeric variables are reduced to 2 principal components
