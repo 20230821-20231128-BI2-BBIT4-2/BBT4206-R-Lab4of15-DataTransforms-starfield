@@ -288,8 +288,111 @@ sapply(student_performance_dataset, class)
 glimpse(student_performance_dataset)
 
 
+### Iris Dataset ----
+# Execute the following to load the downloaded Iris dataset:
+iris_dataset <- read.csv("data/iris.data", header = FALSE,
+                         stringsAsFactors = TRUE)
+# This time, we name the attributes of the Iris Dataset as follows:
+names(iris_dataset) <- c("sepal length in cm", "sepal width in cm",
+                         "petal length in cm", "petal width in cm", "class")
 
 
+### The Pima Indians Diabetes Dataset ----
+# Execute the following to load the "Pima Indians Diabetes" dataset from the
+# mlbench package:
+data("PimaIndiansDiabetes")
+
+# Scale Data Transform ----
+
+## STEP 3. Apply a Scale Data Transform ----
+# The scale data transform is useful for scaling data that has a Gaussian
+# distribution. The scale data transform works by calculating the standard
+# deviation of an attribute and then divides each value by the standard
+# deviation.
+
+### Benefits of Scaling ----
+#### 1. Facilitating Algorithm Convergence ----
+# Many machine learning algorithms, such as gradient descent-based methods and
+# support vector machines, work more efficiently and converge faster when the
+# input features are on similar scales. Rescaling the data helps prevent some
+# features from dominating the learning process.
+
+#### 2. Improving Interpretability ----
+# Scaling makes it easier to compare the importance of different features in a
+# model. When features have different scales, it can be challenging to
+# interpret their relative contributions.
+
+#### 3. Enhancing Model Performance ----
+# Some machine learning algorithms, like k-nearest neighbors and principal
+# component analysis, are sensitive to the scale of the data. Scaling can lead
+# to better model performance and more reliable results.
+
+#### 4. Handling Outliers ----
+# Standardizing data can help mitigate the impact of outliers. Outliers are
+# data points that are significantly different from the majority of the data.
+# If not properly handled, outliers can distort model predictions.
+
+#### 5. Comparing Variables ----
+# Scaling allows you to compare variables that have different units or
+# measurement scales. For example, you can compare variables like age and
+# income on the same scale after scaling.
+
+# We use the "preProcess()" function in the caret package
+
+### The Scale Basic Transform on the Boston Housing Dataset ----
+# BEFORE
+
+
+summary(BostonHousing)
+hist(BostonHousing[, 1], main = names(BostonHousing)[1])
+hist(BostonHousing[, 1], main = names(BostonHousing)[1])
+summary(BostonHousing)
+hist(BostonHousing[, 1], main = names(BostonHousing)[1])
+hist(BostonHousing[, 2], main = names(BostonHousing)[2])
+hist(BostonHousing[, 3], main = names(BostonHousing)[3])
+hist(BostonHousing[, 5], main = names(BostonHousing)[5])
+hist(BostonHousing[, 6], main = names(BostonHousing)[6])
+hist(BostonHousing[, 7], main = names(BostonHousing)[7])
+hist(BostonHousing[, 8], main = names(BostonHousing)[8])
+hist(BostonHousing[, 9], main = names(BostonHousing)[9])
+hist(BostonHousing[, 10], main = names(BostonHousing)[10])
+hist(BostonHousing[, 11], main = names(BostonHousing)[11])
+hist(BostonHousing[, 12], main = names(BostonHousing)[12])
+hist(BostonHousing[, 13], main = names(BostonHousing)[13])
+hist(BostonHousing[, 14], main = names(BostonHousing)[14])
+
+model_of_the_transform <- preProcess(BostonHousing, method = c("scale"))
+print(model_of_the_transform)
+boston_housing_scale_transform <- predict(model_of_the_transform,
+                                          BostonHousing)
+# AFTER
+summary(boston_housing_scale_transform)
+hist(boston_housing_scale_transform[, 1],
+     main = names(boston_housing_scale_transform)[1])
+hist(boston_housing_scale_transform[, 2],
+     main = names(boston_housing_scale_transform)[2])
+hist(boston_housing_scale_transform[, 3],
+     main = names(boston_housing_scale_transform)[3])
+hist(boston_housing_scale_transform[, 5],
+     main = names(boston_housing_scale_transform)[5])
+hist(boston_housing_scale_transform[, 6],
+     main = names(boston_housing_scale_transform)[6])
+hist(boston_housing_scale_transform[, 7],
+     main = names(boston_housing_scale_transform)[7])
+hist(boston_housing_scale_transform[, 8],
+     main = names(boston_housing_scale_transform)[8])
+hist(boston_housing_scale_transform[, 9],
+     main = names(boston_housing_scale_transform)[9])
+hist(boston_housing_scale_transform[, 10],
+     main = names(boston_housing_scale_transform)[10])
+hist(boston_housing_scale_transform[, 11],
+     main = names(boston_housing_scale_transform)[11])
+hist(boston_housing_scale_transform[, 12],
+     main = names(boston_housing_scale_transform)[12])
+hist(boston_housing_scale_transform[, 13],
+     main = names(boston_housing_scale_transform)[13])
+hist(boston_housing_scale_transform[, 14],
+     main = names(boston_housing_scale_transform)[14])
 
 ### The Scale Basic Transform on the Crop Dataset ----
 # BEFORE
