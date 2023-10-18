@@ -146,11 +146,16 @@ student_performance_dataset <-
            locale = locale())
 
 View(student_performance_dataset)
+```
 
-# Dimensions
+
+```{Student Performance Dataset Dimensions}
+
 dim(student_performance_dataset)
+```
 
-# Data Types
+
+```{Student Performance Dataset Data Types}
 sapply(student_performance_dataset, class)
 glimpse(student_performance_dataset)
 
@@ -175,6 +180,17 @@ summary(student_data_scale_transform)
 student_performance_dataset_enj <- as.numeric(unlist(student_data_scale_transform[, 49]))
 hist(student_performance_dataset_enj, main = names(student_data_scale_transform)[49])
 
+```
+
+
+```{Histogram vizualization before and after Transformation}
+
+#BEFORE
+hist(student_performance_dataset_enj, main = names(student_performance_dataset)[49])
+
+
+#AFTER
+hist(student_performance_dataset_enj, main = names(student_data_scale_transform)[49])
 ```
 
 
